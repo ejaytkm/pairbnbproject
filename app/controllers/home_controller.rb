@@ -3,5 +3,6 @@ class HomeController < ApplicationController
   end
 
   def new
-  end 
+  end
+
 end

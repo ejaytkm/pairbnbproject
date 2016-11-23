@@ -1,8 +1,10 @@
 class ListingsController < ApplicationController
   def index
+    @listing = Listing.paginate(page: params[:page])
   end
 
   def new
+    @listing = Listing.new      
   end
 
   def create
