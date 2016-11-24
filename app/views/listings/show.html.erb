@@ -1,2 +1,13 @@
-<h1>Listings#show</h1>
-<p>Find me in app/views/listings/show.html.erb</p>
+<%= button_to "Back", listings_path, method: :get %>
+<h1> Listing Unit </h1>
+
+
+	
+	<%= "City :" + @listing.city %> <br>
+	<%= "Address :" + @listing.address %> <br>
+	<%= "Description :" + @listing.description %> <br>
+	<%= "Availability :" + "#{@listing.availability}" %> <br>
+	<%= "Max Occupants :" + "#{@listing.max_occupants}" %> <br>
+	<%= "Price :" + "#{@listing.price}" %> <br>
+	<%= "Number of bedrooms" + "#{@listing.number_of_bedrooms}" %> <br>
+	<%= "Nummber of bathrooms" + "#{@listing.number_of_bathrooms}" %> <br>
