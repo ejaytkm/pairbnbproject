@@ -1,13 +1,23 @@
 class ListingsController < ApplicationController
+
+
   def index
     @listing = Listing.paginate(page: params[:page])
   end
 
   def new
-    @listing = Listing.new      
+    @listing = Listing.new
   end
 
   def create
+    listing = Listing.new(params.require(:listing).permit(:city, "#{:max_occupants}", :address, :price, :availibitliy, :description, :number_of_bathrooms, :number_of_bedrooms))
+    listing.save!
+    redirect_to listings_path
+    
+  end
+
+  def update
+    
   end
 
   def show

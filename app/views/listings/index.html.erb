@@ -1,4 +1,6 @@
+<% if current_user.roles == "landlord" %>
 <%= button_to "Create a Listing", new_listing_path, method: :get %>
+<% end %>
 
 <h1> This is the index of listing </h1>
 

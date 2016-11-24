@@ -1,5 +1,7 @@
 <%= button_to "Listings", listings_path, method: :get %>
+<% if current_user.roles == "tenant" %>
 <%= button_to "Become a Host", new_listing_path, method: :get %>
+<% end %>
 <h1>Pair BNB </h1>
 <h2> Why us </h2>
 <h2> How to book </h2>
