@@ -1,14 +1,39 @@
-<h1> this is the index of listing </h1>
+
+
+<h1> This is the index of listing </h1>
+
+
 
 <table class="table">
-<thead>
-	<tr> City </tr>
-	<tr> Address </tr>
-	<tr> Description </tr>
+	<tr>
+		<th> ID </th>
+		<th> City </th>
+		<th> Address </th>
+		<th> Description </th>
+		<th> Availability </th>
+		<th> Max Occupants </th>
+		<th> Price </th>
+		<th> Number of Bathrooms </th>
+		<th> Number of Bedrooms </th>
+		<th> Actions <th>
+	</tr>
 
-</thead>
-<tr>
+	<% @listing.each do |listing| %> 
+		<tr>
+			<td><%= listing.id %></td>
+			<td><%= listing.city %></td>
+			<td><%= listing.address %></td>
+			<td><%= listing.description %></td>
+			<td><%= bool_to_icon(listing.availability) %></td>
+			<td><%= listing.max_occupants %></td>
+			<td><%= "$#{listing.price}" %></td>
+			<td><%= listing.number_of_bedrooms %></td>
+			<td><%= listing.number_of_bathrooms %></td>
 
-
-</tr>
+			<td><%= link_to 'Show', listing_path(listing) %></td>
+			<td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+			<td><%= link_to 'Delete', listing_path(listing), method: "delete", data: {confirm: 'Are you sure?'} %></td>
+		</tr>
+	<% end %>
 </table>
+<%= will_paginate @listing, renderer: BootstrapPagination::Rails %>

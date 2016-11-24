@@ -14,7 +14,11 @@ list = Listing.create(
  price: rand(1000..10000).to_f ,
  availability: true ,
  description: FFaker::Tweet.body,
- number_of_bathrooms: (1..4),
- number_of_bedrooms: (1..4),
+ number_of_bathrooms: rand(1..4),
+ number_of_bedrooms: rand(1..4),
 )
+
 end
+
+user = User.new(email: 'ejaytkm@gmail.com', password: 'edelix123')
+user.save!
