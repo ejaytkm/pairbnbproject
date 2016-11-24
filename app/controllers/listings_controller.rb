@@ -15,14 +15,24 @@ class ListingsController < ApplicationController
   end
 
   def edit
+    if current_user.roles != "landlord" && current_user.roles != "admin"
+     flash[:alert] = "Sorry, you are not allowed to perform this action."
+     redirect_to :back
+    end
   end
 
   def update
   end
 
   def destroy
-    @listing = Listing.find(params[:id])
-    @listing.destroy
-    redirect_to :back
+    if current_user.roles != "landlord" && current_user.roles != "admin"
+      flash[:alert] = "Sorry, you are not allowed to perform this action."
+      redirect_to :back
+    else
+      @listing = Listing.find(params[:id])
+      @listing.destroy
+      flash[:alert] = "Your listing has been removed. Thank you for you services!"
+      redirect_to :back
+    end
   end
 end
