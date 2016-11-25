@@ -1,4 +1,4 @@
-<% if current_user.roles == "landlord" %>
+<% if current_user.roles != "tenant" %>
 <%= button_to "Create a Listing", new_listing_path, method: :get %>
 <% end %>
 
@@ -22,6 +22,7 @@
 
 	<% @listing.each do |listing| %> 
 		<tr>
+			<td><%= image_tag listing.image_url.to_s %></td>
 			<td><%= listing.id %></td>
 			<td><%= listing.city %></td>
 			<td><%= listing.address %></td>

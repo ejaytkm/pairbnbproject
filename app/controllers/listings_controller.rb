@@ -1,3 +1,5 @@
+require 'carrierwave/orm/activerecord'
+
 class ListingsController < ApplicationController
 
 
@@ -10,8 +12,10 @@ class ListingsController < ApplicationController
   end
 
   def create
-    listing = Listing.new(params.require(:listing).permit(:city, "#{:max_occupants}", :address, :price, :availibitliy, :description, :number_of_bathrooms, :number_of_bedrooms))
-    listing.save!
+    
+    listing = Listing.new(listing_params)
+    listing.user_id = current_user.id
+    byebug
     redirect_to listings_path
     
   end
@@ -44,5 +48,10 @@ class ListingsController < ApplicationController
       flash[:alert] = "Your listing has been removed. Thank you for you services!"
       redirect_to :back
     end
+  end
+
+  private
+  def listing_params 
+    params.require(:listing).permit! #.(:city, :max_occupants, :address, :price, :availibitliy, :description, :number_of_bathrooms, :number_of_bedrooms , {image: []})
   end
 end

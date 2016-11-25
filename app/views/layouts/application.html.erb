@@ -1,31 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'application', media: 'all'%>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
- <% if signed_in? %>
-    <%= current_user.email %>
-  <% end %> 
-  
-  <div id="header">
-    <% if signed_in? -%>
-      <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
-    <% else -%>
-      <%= link_to t(".sign_in"), sign_in_path %>
-    <% end -%>
-  </div>
-
- 
-    <div id="flash">
+  <div class="navbar navbar-default" role="navigation">
+  <ul>
+    <% if signed_in? %>
+      <%= current_user.email %>
+    <% end %> 
+    
+    <li>
+    <div id="header2">
+      <% if signed_in? -%>
+        <%= button_to t(".sign_out"), sign_out_path, method: :delete %>
+      <% else -%>
+        <%= link_to t(".sign_in"), sign_in_path %>
+      <% end -%>
+    </div>
+    </li>
+   
+    <div id="flash2">
       <% flash.each do |key, value| %>
         <div class="flash <%= key %>"><%= value %></div>
       <% end %>
     </div>
 
-    <%= button_to "Home", home_path, method: :get %>
+    <li>
+      <%= button_to "Home", home_path, method: :get %>
+    </li>
+
+    <% if current_user.roles == "landlord" %>
+     <li><%= button_to "Create a Listing", new_listing_path, method: :get %></li>
+    <% end %>
+
+    <li>
+    <div>
+      <%= button_to "Listings", listings_path, method: :get %>
+    </div>
+    </li>
+
+
+<nav id="header" class="navbar navbar-fixed-top">
+            <div id="header-container" class="container navbar-container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a id="brand" class="navbar-brand" href="#">Project name</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div><!-- /.nav-collapse -->
+            </div><!-- /.container -->
+        </nav><!-- /.navbar -->
+
+    <div>
+      <% if current_user.roles == "tenant" %>
+        <li><%= button_to "Become a Host", new_listing_path, method: :get %></li>
+      <% end %>
+    </div>
+  </ul>
+  </div>
+
 
   <%= yield %>
 </body>
