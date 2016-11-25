@@ -20,6 +20,8 @@
         <% end %>
       </div>
       
+       <li><%= button_to "Listings", listings_path, method: :get %></li>
+      
       <% if current_user.nil? %>
         <% "Do nothing" %>
       <% elsif current_user.roles != "tenant" %>
@@ -27,7 +29,7 @@
       <% end %>
 
     
-        <li><%= button_to "Listings", listings_path, method: :get %></li>
+       
     
       <% if current_user.nil? %>
         <% "Do nothing" %>
