@@ -15,7 +15,7 @@ class ListingsController < ApplicationController
     
     listing = Listing.new(listing_params)
     listing.user_id = current_user.id
-    byebug
+    listing.save!
     redirect_to listings_path
     
   end
@@ -52,6 +52,6 @@ class ListingsController < ApplicationController
 
   private
   def listing_params 
-    params.require(:listing).permit! #.(:city, :max_occupants, :address, :price, :availibitliy, :description, :number_of_bathrooms, :number_of_bedrooms , {image: []})
+    params.require(:listing).permit(:city, :max_occupants, :address, :price, :availibitliy, :description, :number_of_bathrooms, :number_of_bedrooms, :image)
   end
 end
