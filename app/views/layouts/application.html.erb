@@ -31,7 +31,8 @@
         <% if current_user.nil? %>
           <% "Do nothing" %>
         <% elsif current_user.roles == "tenant" %>
-          <li><%= button_to "Become a Host", new_listing_path, method: :get %></li> <!--fix this -->
+          <li><a>Become a Host</a></li> <!--fix this -->
+
         <% end %>
 
         </ul>
