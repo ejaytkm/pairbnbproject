@@ -1,0 +1,47 @@
+  <nav id="navbar" class="nav nav-tabs navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/home">PairBnB</a>
+      </div>
+      
+      <ul class="nav navbar-nav">
+        <div id="flash2">
+          <% flash.each do |key, value| %>
+           <div class="flash <%= key %>"><%= value %></div>
+          <% end %>
+        </div>
+        
+         <li><a href="/listings">Listings</a></li>
+
+        <% if current_user.nil? %>
+          <% "Do nothing" %>
+        <% elsif current_user.roles != "tenant" %>
+          <li><a class="navbar" href="/listings/new">Create Listing</a></li>
+        <% end %>
+      
+        <% if current_user.nil? %>
+          <% "Do nothing" %>
+        <% elsif current_user.roles == "tenant" %>
+          <li><a>Become a Host</a></li> <!--fix this -->
+
+        <% end %>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <% if signed_in? %>
+            <li><%= link_to "#{current_user.email}", profile_path(current_profile) %></li>
+          <% end %>
+
+          <div>
+            <% if signed_in? -%>
+                <li>  <%= button_to "Sign Out", sign_out_path, method: :delete %> </li>
+              <% else -%> 
+                <li>  <%= link_to "Sign In", sign_in_path %> </li>
+              <% end -%>
+          </div>
+        </ul>
+ 
+
+      </div>
+  </nav>

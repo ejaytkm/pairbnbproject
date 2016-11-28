@@ -2,6 +2,7 @@ Rails.application.routes.draw do
  
  	resources :listings 
   resources :users, only: [:index, :show, :team]
+  resources :reservations
   resources :profiles 
 
   get 'home' => 'home#index' #when someone types /home, it will lead to home/index

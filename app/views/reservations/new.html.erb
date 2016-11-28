@@ -1,0 +1,29 @@
+<h1> Confirming your reservation </h1>
+
+
+<ul><%= current_user.email %></ul>
+<ul><%= current_user.profile.first_name + current_user.profile.last_name %></ul>
+
+<h3> Select your dates </h3>
+<%= form_for(@reservation) do |f|%>
+	  <p>
+    <%= f.label :Check_in %>
+    <%= f.date_field :check_in %>
+    </p>
+
+    <p>
+    <%= f.label :Check_out%>
+    <%= f.date_field :check_out %>
+		</p>
+
+	
+		<%= f.hidden_field :listing_id, value: @listing %>
+
+
+		<p>
+		<%= f.submit %>
+		</p>
+
+
+
+<% end %>
