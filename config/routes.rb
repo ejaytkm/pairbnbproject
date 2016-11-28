@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
  
  	resources :listings 
+
+  resources :users, only: [:index, :show, :team]
+  resources :reservations
+
   resources :users, only: [:index, :show]
+
   resources :profiles 
 
 

@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <%= stylesheet_link_tag 'application', media: 'all'%>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-
-  <%= render '/layouts/navbar' %>
-=======
-
-  <nav class="nav nav-tabs navbar-fixed-top">
+  <nav id="navbar" class="nav nav-tabs navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="/home">PairBnB</a>
@@ -34,7 +22,8 @@
         <% if current_user.nil? %>
           <% "Do nothing" %>
         <% elsif current_user.roles == "tenant" %>
-          <li><a>Become a host</a></li> <!--fix this -->
+          <li><a>Become a Host</a></li> <!--fix this -->
+
         <% end %>
 
         </ul>
@@ -44,11 +33,11 @@
             <li><%= link_to "#{current_user.email}", profile_path(current_profile) %></li>
           <% end %>
 
-          <div id="header2">
+          <div>
             <% if signed_in? -%>
-                <li>  <%= button_to t(".sign_out"), sign_out_path, method: :delete %> </li>
+                <li>  <%= button_to "Sign Out", sign_out_path, method: :delete %> </li>
               <% else -%> 
-                <li>  <%= link_to t(".sign_in"), sign_in_path %> </li>
+                <li>  <%= link_to "Sign In", sign_in_path %> </li>
               <% end -%>
           </div>
         </ul>
@@ -56,11 +45,3 @@
 
       </div>
   </nav>
-
-
-
-  <%= yield %>
-</body>
-</html>
-
-<!-- link_to "#{current_user.email}", profile_path(@profile) -->
