@@ -4,7 +4,9 @@ class ListingsController < ApplicationController
 
 
   def index
+
     @listing = Listing.paginate(page: params[:page]).order("id DESC")
+
   end
 
   def new
