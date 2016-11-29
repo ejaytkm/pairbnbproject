@@ -18,7 +18,7 @@
 
 	<% @listing.each do |listing| %> 
 		<tr>
-			<td><%= image_tag listing.image_url.to_s %></td>
+			<td><%= image_tag listing.image_url(:thumb).to_s %></td>
 			<td><%= listing.id %></td>
 			<td><%= listing.city %></td>
 			<td><%= listing.address %></td>

@@ -3,5 +3,7 @@ module ListingsHelper
 		bool ? "✓" : "☓"
 	end
 
-	
+	def current_lister 
+		@current_lister = Listing.find(params[:id])
+	end
 end

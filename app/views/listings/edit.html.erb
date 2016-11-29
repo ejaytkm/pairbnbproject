@@ -1,2 +1,45 @@
 <h1>Listings#edit</h1>
 <p>Find me in app/views/listings/edit.html.erb</p>
+
+<%= form_for @listing, html: {multipart:  true } do |f| %>
+  <p>
+    <%= f.label :name_of_city %><br>
+    <%= f.text_field :city %>
+  </p>
+ 
+  <p>
+    <%= f.label :Address %><br>
+    <%= f.text_area :address %>
+  </p>
+
+  <p>
+    <%= f.label :Description %><br>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.label :Max_Occupants %><br>
+    <%= f.text_area :max_occupants %>
+  </p>
+
+  <p>
+    <%= f.label :Price %><br>
+    <%= f.text_area :price %>
+  </p>
+ 
+ 	<p>
+    <%= f.label :Number_of_bathrooms %><br>
+    <%= f.text_area :number_of_bathrooms %>
+  </p>
+
+  <p>
+    <%= f.label :Number_of_bedrooms %><br>
+    <%= f.text_area :number_of_bedrooms %>
+  </p>
+
+  <p>
+  	<%= f.file_field :image %>
+  </p>
+
+    <%= f.submit "Edit Listings"%>
+<% end %>

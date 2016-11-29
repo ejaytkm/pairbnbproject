@@ -4,9 +4,7 @@ class ListingsController < ApplicationController
 
 
   def index
-
     @listing = Listing.paginate(page: params[:page]).order("id DESC")
-
   end
 
   def new
@@ -14,30 +12,29 @@ class ListingsController < ApplicationController
   end
 
   def create
-    
     listing = Listing.new(listing_params)
     listing.user_id = current_user.id
     listing.save!
     redirect_to listings_path
-    
   end
 
   def update
-    
+    listing = Listing.find(params[:id])
+    listing.update(listing_params)
+    redirect_to listings_path
   end
 
   def show
     @listing = Listing.find(params[:id])
+
   end
 
   def edit
+  @listing = Listing.find(params[:id])    
     if current_user.roles != "landlord" && current_user.roles != "admin"
      flash[:alert] = "Sorry, you are not allowed to perform this action."
      redirect_to :back
     end
-  end
-
-  def update
   end
 
   def destroy
