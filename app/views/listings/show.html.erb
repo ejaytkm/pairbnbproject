@@ -13,4 +13,4 @@
 	<%= "Nummber of bathrooms" + "#{@listing.number_of_bathrooms}" %> <br>
 
 
-	<%= link_to "Book Now", new_reservation_path(listing_id: @listing.id) %>
+	<%= link_to "Book Now", new_reservation_path(listing_id: @listing.id, listing_price: @listing.price) %>
