@@ -41,8 +41,9 @@ class ReservationsController < ApplicationController
 	  :payment_method_nonce => nounce,
 	  :options => {
     :submit_for_settlement => true
-  }
-)
+  })
+		
+
 	end
 
 
