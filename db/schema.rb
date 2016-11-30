@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129075229) do
+ActiveRecord::Schema.define(version: 20161129094957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,8 +37,6 @@ ActiveRecord::Schema.define(version: 20161129075229) do
     t.integer "amount"
     t.integer "last_four_digit"
     t.string  "card_type"
-    t.integer "reservations_id"
-    t.index ["reservations_id"], name: "index_payments_on_reservations_id", using: :btree
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -62,7 +60,10 @@ ActiveRecord::Schema.define(version: 20161129075229) do
     t.datetime "updated_at", null: false
     t.date     "check_in"
     t.date     "check_out"
+    t.integer  "payment_id" 
+    t.integer  "price"
     t.index ["listing_id"], name: "index_reservations_on_listing_id", using: :btree
+    t.index ["payment_id"], name: "index_reservations_on_payment_id", using: :btree
     t.index ["user_id"], name: "index_reservations_on_user_id", using: :btree
   end
 
