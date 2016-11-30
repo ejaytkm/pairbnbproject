@@ -6,27 +6,23 @@
 
 <h3> Select your dates </h3>
 <%= form_for(@reservation) do |f|%>
-	  <p>
-    <%= f.label :Check_in %>
-    <%= f.date_field :check_in %>
-    </p>
+  <p>
+	  <%= f.label :Check_in %>
+	  <%= f.date_field :check_in %>
+  </p>
 
-    <p>
-    <%= f.label :Check_out%>
-    <%= f.date_field :check_out %>
-		</p>
-
-	
-		<%= f.hidden_field :listing_id, value: @listing %>
-		<%= f.hidden_field :price, value: @price %>
+  <p>
+	  <%= f.label :Check_out%>
+	  <%= f.date_field :check_out %>
+	</p>
 
 
-		<p>
-		<%= f.submit 'Pay now' %>
-		</p>
+	<%= f.hidden_field :listing_id, value: @listing %>
+	<%= f.hidden_field :price, value: @price %>
 
 
-
-
+	<p>
+	<%= f.submit 'Pay now' %>
+	</p>
 
 <% end %>

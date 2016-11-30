@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20161129094957) do
     t.datetime "updated_at", null: false
     t.date     "check_in"
     t.date     "check_out"
-    t.integer  "payment_id"
+    t.integer  "payment_id" 
     t.integer  "price"
     t.index ["listing_id"], name: "index_reservations_on_listing_id", using: :btree
     t.index ["payment_id"], name: "index_reservations_on_payment_id", using: :btree

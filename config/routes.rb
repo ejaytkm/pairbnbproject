@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
  
- 	resources :listings 
+ 	resources :listings
+  # do
+  #   resources :reservations, only: [:new] do 
+  #     resources :checkout, only: [:new]
+  #   end
+  # end
 
   resources :users, only: [:index, :show, :team]
   get 'basket', to: 'reservations#basket'

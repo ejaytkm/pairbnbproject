@@ -22,24 +22,26 @@ class ReservationsController < ApplicationController
 		reservation = Reservation.new(permission)
 		reservation.user_id = current_user.id
 		reservation.payment_id = 1 # defaults the payment
-		reservation.save!
-
-		if reservation.save!
+		
+		if reservation.valid_date? #true 
+			reservation.save!
 			redirect_to basket_path(reservation_id: reservation.id, user_id: reservation.user_id, check_in: reservation.check_in, check_out: reservation.check_out, price: reservation.price)
 		else 
+			flash[:alert] = "Sorry, the thing is fully booked"
+			@reservation = Reservation.new
 			redirect_to :back	
-			flash[:alert] = "Sorry, there was an error. Please try again later or contact the PairBNB team"
-		end
+		
+		end			
+	end 
 
-	end
 
-	def basket
+	def basket #get 
 		@client_token = Braintree::ClientToken.generate
 		@paymeent = Payment.new
 		session[:reservation_id] = params[:reservation_id]
 	end
 
-	def checkout
+	def checkout #post
 		nounce = params[:payment_method_nounce]
 		result = Braintree::Transaction.sale(
 		  :amount => "10.00",
