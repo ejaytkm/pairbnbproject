@@ -3,14 +3,13 @@
 
 <div class = "row">
 	<div class="col-md-4" >
-		<p> For search put here </p>
+		<h3> Filter your search here </h3>
 	</div> 	
 	
 	<div class="col-md-8" >
 		<table class="table">
 			<tr>
 			<th> </th>
-				<th> ID </th>
 				<th> City </th>
 				<th> Address </th>
 				<th> Description </th>
@@ -22,8 +21,7 @@
 
 			<% @listing.each do |listing| %> 
 				<tr>
-					<td><%= image_tag listing.image_url(:thumb).to_s %></td>
-					<td><%= listing.id %></td>
+					<td><%= link_to image_tag(listing.image_url(:thumb).to_s), listing_path(listing) %></td>
 					<td><%= listing.city %></td>
 					<td><%= listing.address %></td>
 					<td><%= listing.description %></td>
