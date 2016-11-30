@@ -4,7 +4,15 @@ class ListingsController < ApplicationController
 
 
   def index
-    @listing = Listing.paginate(page: params[:page]).order("id DESC")
+    if params[:query].nil? or params[:query] == ""
+      listing = Listing.all
+    else
+      listing = Listing.city_search(params[:query]) if !params[:query].nil? 
+      listing = Listing.price_search(params[:query]) if params[:query].to_i != 0
+      listing = Listing.max_occupants_search(params[:query]) if params[:query].to_i != 0
+      listing = Listing.max_bathrooms_search(params[:query]) if params[:query].to_i != 0
+    end
+    @listing = listing.paginate(page: params[:page]).order("id DESC").per_page(15)
   end
 
   def new

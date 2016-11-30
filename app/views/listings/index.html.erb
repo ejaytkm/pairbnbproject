@@ -3,9 +3,45 @@
 
 <div class = "row">
 	<div class="col-md-4" >
-		<h3> Filter your search here </h3>
+		<div>
+			<h3> Filter your search here </h3>
+			<%= form_tag listings_path, method: :get do %>
+			<%= text_field_tag :query, params[:query] %>
+			<%= submit_tag "Search City", name: nil %>
+			<% end %>
+		</div><br>
+
+		<div>
+			<%= form_tag listings_path, method: :get do %>
+			<%= range_field_tag :query, params[:query] %>
+			<%= submit_tag "Search Price Range", name: nil %>
+			<% end %>
+		</div><br>
+
+		<div>
+			<%= form_tag listings_path, method: :get do %>
+			<%= number_field_tag :query, params[:query] %>
+			<%= submit_tag "Max Number of Occupants", name: nil %>
+			<% end %>
+		</div>
+
+		<div>
+			<%= form_tag listings_path, method: :get do %>
+			<%= number_field_tag :query, params[:query] %>
+			<%= submit_tag "Max Number of Bedrooms", name: nil %>
+			<% end %>
+		</div>	
+
+
 	</div> 	
 	
+
+
+
+
+	<!--  __________________________________HALF PAGE BREAK_________________________________________ -->
+
+
 	<div class="col-md-8" >
 		<table class="table">
 			<tr>
