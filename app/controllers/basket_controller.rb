@@ -5,7 +5,6 @@ class BasketController < ApplicationController
 		@reservation_id = params[:reservation_id]
 		@client_token = Braintree::ClientToken.generate
 		@paymeent = Payment.new
-		session[:reservation_id] = params[:reservation_id]
 	end
 
 	def create
