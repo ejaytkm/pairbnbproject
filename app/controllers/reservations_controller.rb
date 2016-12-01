@@ -3,9 +3,8 @@ class ReservationsController < ApplicationController
 	end
 
 	def new 
+		@listing = Listing.find(params[:listing_id])
 		@reservation = Reservation.new
-		@listing = params[:listing_id]
-		@price = params[:listing_price]
 	end 
 
 	def show 
@@ -20,8 +19,10 @@ class ReservationsController < ApplicationController
 
 	def create 
 		reservation = Reservation.new(permission)
+		reservation.listing_id = params[:listing_id]
 		reservation.user_id = current_user.id
 		reservation.payment_id = 1 # defaults the payment
+		byebug
 		
 		if reservation.valid_date? #true 
 			reservation.save!
@@ -65,7 +66,7 @@ class ReservationsController < ApplicationController
 
 	private
 	def permission 
-			params.require(:reservation).permit(:check_in, :check_out, :listing_id, :price)
+			params.require(:reservation).permit(:check_in, :check_out)
 	end
 	
 end
