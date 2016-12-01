@@ -1,41 +1,27 @@
 
-<h1> This is the index of listing </h1>
+
 
 <div class = "row">
-	<div class="col-md-4" >
-		<div>
-			<h3> Filter your search here </h3>
+<h1> This is the index of listing </h1>
+	<div class="col-md-4" class="panel-body" >
+		<h3> Filter your search here </h3>
+		<div>	
 			<%= form_tag listings_path, method: :get do %>
-			<%= text_field_tag :query, params[:query] %>
-			<%= submit_tag "Search City", name: nil %>
-			<% end %>
-		</div><br>
-
-		<div>
-			<%= form_tag listings_path, method: :get do %>
-			<%= range_field_tag :query, params[:query] %>
-			<%= submit_tag "Search Price Range", name: nil %>
-			<% end %>
-		</div><br>
-
-		<div>
-			<%= form_tag listings_path, method: :get do %>
-			<%= number_field_tag :query, params[:query] %>
-			<%= submit_tag "Max Number of Occupants", name: nil %>
-			<% end %>
-		</div>
-
-		<div>
-			<%= form_tag listings_path, method: :get do %>
-			<%= number_field_tag :query, params[:query] %>
-			<%= submit_tag "Max Number of Bedrooms", name: nil %>
+			<p> City </p>
+			<%= text_field_tag :city, params[:city] %>
+			<p> Max Occupants </p>
+			<%= number_field_tag :occupants, params[:occupants] %>
+			<p>Bedrooms</p>
+			<%= number_field_tag :bedrooms, params[:bedrooms] %>
+			<p>Bathrooms</p>				
+			<%= number_field_tag :bathrooms, params[:bathrooms] %>
+			<p> Min Max Price </p>
+			<%= number_field_tag :min_price, params[:min_price] %>
+			<%= number_field_tag :max_price, params[:max_price] %>
+			<%= submit_tag "Advance Search Here", name: nil %>
 			<% end %>
 		</div>	
-
-
 	</div> 	
-	
-
 
 
 

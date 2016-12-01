@@ -4,15 +4,12 @@ class ListingsController < ApplicationController
 
 
   def index
-    if params[:query].nil? or params[:query] == ""
-      listing = Listing.all
-    else
-      listing = Listing.city_search(params[:query]) if !params[:query].nil? 
-      listing = Listing.price_search(params[:query]) if params[:query].to_i != 0
-      listing = Listing.max_occupants_search(params[:query]) if params[:query].to_i != 0
-      listing = Listing.max_bathrooms_search(params[:query]) if params[:query].to_i != 0
+    @listing = Listing.where(nil)
+    filtering_params(params).each do |key, value|
+      @listing = @listing.public_send(key, value) if value.present?
     end
-    @listing = listing.paginate(page: params[:page]).order("id DESC").per_page(15)
+    @listing = @listing.paginate(page: params[:page]).order("id DESC").per_page(15)
+
   end
 
   def new
@@ -57,7 +54,14 @@ class ListingsController < ApplicationController
   end
 
   private
+
+
   def listing_params 
     params.require(:listing).permit(:city, :max_occupants, :address, :price, :availibitliy, :description, :number_of_bathrooms, :number_of_bedrooms, :image)
   end
+
+  def filtering_params(params)
+    params.slice(:city, :occupants, :bedrooms, :bathrooms, :min_price, :max_price)
+  end
+
 end
