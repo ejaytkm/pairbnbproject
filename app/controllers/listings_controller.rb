@@ -1,10 +1,13 @@
 require 'carrierwave/orm/activerecord'
 
 class ListingsController < ApplicationController
-
-
   def index
-    @listing = Listing.paginate(page: params[:page]).order("id DESC")
+    @listing = Listing.where(nil)
+    filtering_params(params).each do |key, value|
+      @listing = @listing.public_send(key, value) if value.present?
+    end
+    @listing = @listing.paginate(page: params[:page]).order("id DESC").per_page(15)
+
   end
 
   def new
@@ -49,7 +52,15 @@ class ListingsController < ApplicationController
   end
 
   private
+
+
   def listing_params 
     params.require(:listing).permit(:city, :max_occupants, :address, :price, :availibitliy, :description, :number_of_bathrooms, :number_of_bedrooms, :image)
   end
+
+  def filtering_params(params)
+    params.slice(:city, :occupants, :bedrooms, :bathrooms, :min_price, :max_price)
+    
+  end
+
 end
