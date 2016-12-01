@@ -1,8 +1,6 @@
 require 'carrierwave/orm/activerecord'
 
 class ListingsController < ApplicationController
-
-
   def index
     @listing = Listing.where(nil)
     filtering_params(params).each do |key, value|
@@ -62,6 +60,7 @@ class ListingsController < ApplicationController
 
   def filtering_params(params)
     params.slice(:city, :occupants, :bedrooms, :bathrooms, :min_price, :max_price)
+    
   end
 
 end
