@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :listing do 
     resources :reservations, only: [:new, :create] do 
       resources :basket, only: [:new, :create]
-      end
     end
   end
 
