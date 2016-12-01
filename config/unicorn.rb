@@ -14,12 +14,6 @@ before_fork do |server, worker|
     ActiveRecord::Base.connection.disconnect!
 end
 
-if defined?(Resque)
-    Resque.redis.quit
-    Rails.logger.info('Disconnected from Redis')
-  end
-end
-
 after_fork do |server, worker|
   Signal.trap 'TERM' do
     puts 'Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT'
@@ -27,10 +21,4 @@ after_fork do |server, worker|
 
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.establish_connection
-
-     if defined?(Resque)
-    Resque.redis = ENV['<REDIS_URL>']
-    Rails.logger.info('Connected to Redis')
-  end
-end
 end
