@@ -1,12 +1,12 @@
 <h1> Your Basket </h1>
 
-<form id="checkout-form" action="/checkout" method="post">
+<form id="checkout-form" action="/listing/<%= @listing_id %>/reservations/<%= @reservation_id %>/basket" method="post">
   <div id="error-message"></div>
 
   <label for="card-number">Card Number</label>
   <div class="hosted-field" id="card-number"></div>
 
-  <label for="cvv">CVV</label>
+  <label for="cvv">CVV</label>a
   <div class="hosted-field" id="cvv"></div>
 
   <label for="expiration-date">Expiration Date</label>
@@ -16,6 +16,7 @@
   <input type="submit" value="Pay $10" disabled>
   <input type="hidden" name="reservation_id" value="<%= session[:reservation_id] %>">
 </form>
+
 
 <!-- Load the Client component. -->
 <script src="https://js.braintreegateway.com/web/3.6.0/js/client.min.js"></script>
