@@ -6,6 +6,6 @@ class HomeController < ApplicationController
 			profile.save!
 		end
 
-	end 
+end 
 
 end
