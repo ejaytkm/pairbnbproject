@@ -29,7 +29,7 @@
     <% if current_user.nil? %>
       <% "Do nothing" %>
     <% elsif current_user.roles == "tenant" %>
-      <li><a>Become a Host</a></li> <!--fix this -->
+      <li><a class="navbar" href="/listings/new">Become a Host</a></li>
     <% end %>
   </ul>
 

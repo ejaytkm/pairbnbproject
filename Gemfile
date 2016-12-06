@@ -34,6 +34,10 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails', '~> 3.5'
+  gem 'capybara' #tests for rspec 
+  gem 'launchy' #launches the browser at the point of the test
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 group :development do
@@ -60,6 +64,8 @@ gem 'mini_magick'
 gem 'rmagick'
 gem 'rails_12factor', group: :production
 gem 'unicorn'
+
+
 
 
 
